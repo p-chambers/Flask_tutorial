@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% from 'macros/_formhelpers.html' import render_field %}
+ 
+      <div class="jumbotron">
+        <h1>Bucket List App</h1>
+        <form class="form-signup">
+        {{ form.hidden_tag() }}
+        <div align="left">
+		{{ render_field(form.username, class="form-control")}}
+		{{ render_field(form.email, class="form-control")}}
+		{{ render_field(form.password, class="form-control")}}
+		</div>
+		{{ render_field(form.accept_tos, class="form-control")}}
+		<!--         <label for="inputEmail" class="sr-only">Email Address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+          -->
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+      </form>
+      </div>
+
+{% endblock %}
