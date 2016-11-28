@@ -1,3 +1,5 @@
 /config.py
 *.pyc
 */.ipynb_checkpoints/
+*.db
+/db_repository/
