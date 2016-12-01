@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% from 'macros/_formhelpers.html' import render_field %}
+ 
+      <div class="jumbotron">
+        <h1>Bucket List App</h1>
+        <form class="form-signin" method="post">
+        {{ form.hidden_tag() }}
+        <div align="left">
+		{{ render_field(form.email, class="form-control")}}
+		{{ render_field(form.password, class="form-control")}}
+		</div>
+		{{ render_field(form.remember_me, class="form-control")}}
+        <button id="btnLogin" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+      </form>
+      </div>
+
+{% endblock %}

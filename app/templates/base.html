@@ -21,10 +21,17 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="active"><a href="/">Home</a>
                     </li>
-                    <li role="presentation"><a href="#">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="/signup">Sign Up</a>
-                    </li>
+                    {% if g.user %}
+                        <li role="presentation"><a href="{{ url_for('signup')}}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                    {% if g.user.is_authenticated %}
+                        <li role="presentation"> <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <li role="presentation"><a href="{{ url_for('login')}}">Log In {{current_user.username}}</a>
+                        </li>
+                    {% endif %}
+
                 </ul>
             </nav>
             <h3 class="text-muted">Python Flask App</h3>
@@ -38,7 +45,7 @@
             </ul>
           {% endif %}
         {% endwith %}
-        
+
         {% block content %}{% endblock %}
 
         <footer class="footer">
