@@ -3,3 +3,4 @@
 */.ipynb_checkpoints/
 *.db
 /db_repository/
+*.DS_Store
