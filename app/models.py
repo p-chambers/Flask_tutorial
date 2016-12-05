@@ -2,7 +2,7 @@
 # @Author: p-chambers
 # @Date:   2016-11-25 15:50:35
 # @Last Modified by:   Paul Chambers
-# @Last Modified time: 2016-11-30 22:30:05
+# @Last Modified time: 2016-12-02 12:39:43
 from . import db, bcrypt
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -33,14 +33,11 @@ class User(UserMixin, db.Model):
     def check_password(self, text_password):
         return bcrypt.check_password_hash(self._password, text_password)
 
-    def is_authenticated(self):
-        return True
+    # def is_authenticated(self):
+    #     return True
 
     # def authenticate(self):
     #     self.authenticate = True
-
-    def get_id(self):
-        return self.email
 
     def is_anonymous(self):
         # No anonymous user support

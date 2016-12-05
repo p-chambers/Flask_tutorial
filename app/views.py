@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: paul
 # @Date:   2016-11-23 23:06:12
-# @Last Modified by:   p-chambers
-# @Last Modified time: 2016-12-01 18:46:17
+# @Last Modified by:   Paul Chambers
+# @Last Modified time: 2016-12-02 14:33:06
 from flask import render_template, flash, redirect, session, url_for, request,\
    g, abort
 from flask_login import login_user, logout_user, current_user, login_required
@@ -61,17 +61,17 @@ def login():
         email = form.email.data
         user = User.query.filter_by(email=email).first()
         if user and user.check_password(form.password.data):
-          login_user(user, remember=form.remember_me.data)
-          flash('Logged in successfully.')
-          flash(current_user.username)
-
-          next = request.args.get('next')
-          if not is_safe_url(next):
-             return abort(400)
-
-          return redirect(next or url_for('index'))
+          print('id = '.format(session.get("user_id")))
+          if login_user(user, remember=form.remember_me.data):
+              flash("Logged in!")
+              next = request.args.get('next')
+              if not is_safe_url(next):
+                  return abort(400)
+              return redirect(next or url_for("index"))
+          else:
+              flash("Sorry, but you could not log in.")
         else:
-          return redirect(url_for(login))
+          return redirect(url_for('login'))
 
     return render_template('login.html', 
                            title='Log In',
@@ -81,6 +81,7 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash("Logged out successfully")
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
